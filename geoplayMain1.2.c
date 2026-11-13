@@ -881,7 +881,7 @@ static void showWelcome(void)
 
     y = 3;
     textcolor(COLOR_EXTRA);
-    cputsxy(1, y, "GeoPlayer 1.1");
+    cputsxy(1, y, "GeoPlayer 1.2");
     textcolor(COLOR_FOREGROUND);
     cputs(" - GeoRAM audio player");
     y += 2;

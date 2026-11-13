@@ -1,0 +1,23 @@
+# File oggetto generati da cc65/ca65
+*.o
+*.obj
+*.a
+
+# Output di build generati (listing, mappe, etichette)
+*.map
+*.lbl
+*.list
+
+# File di backup dell'editor
+*~
+*.swp
+*.bak
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / editor
+.vscode/
+.idea/

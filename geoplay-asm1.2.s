@@ -1650,7 +1650,7 @@ loadimage:
 
 
 ; Slide show: SPACE = next image
-; If only one image is loaded, SPACE returns to main screen.
+; Exits after the last image; with 0 or 1 images SPACE returns immediately.
 
 .export _koalaCount
 _koalaCount: .byte 0
@@ -1677,18 +1677,16 @@ _downloadKoala:
         bne @check
 
         lda _koalaCount
-        cmp #1
-        beq @quit              ; only one image: return
+        cmp #2
+        bcc @quit              ; 0 or 1 image: return
 
         inc $dfff              ; next GeoRAM block
 
         lda $dfff
         cmp _koalaCount
-        bcc @start
+        bcc @start             ; more images to show
 
-        lda #0                 ; restart from first image
-        sta $dfff
-        jmp @start
+                               ; all images shown: fall through to exit
 
 @quit:
         jmp settext

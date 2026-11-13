@@ -224,7 +224,7 @@ ScreenMenuEntry aHelpMenuEntries[] =
 ScreenMenuEntry aMainMenuEntries[] =
 {       
         { "PRG Uploader", uploadPRG, returnTrue },
-		{ "Image Uploader", uploadImage, returnTrue },
+		{ "Bin uploader", uploadImage, returnTrue },
 		{ "SuperMon+", doSupermon, returnTrue },
         { "Reset", utilReset, returnTrue },
         { NULL, NULL, 0 }

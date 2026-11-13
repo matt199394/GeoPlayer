@@ -1,0 +1,108 @@
+
+#ifndef PROVA_H_
+#define PROVA_H_
+
+#include <c64.h>
+#include <stdint.h>
+
+#define COLOR_BACKGROUND COLOR_LIGHTBLUE
+#define COLOR_LIGHTFRAME COLOR_GRAY1
+#define COLOR_FOREGROUND COLOR_BLACK
+#define COLOR_EXTRA      COLOR_BROWN
+
+#define BUTTON_ENTER     0x01
+#define BUTTON_STOP      0x02
+
+/**
+ * This type describes an entry in a menu.
+ * The last Entry (terminator) has all fields set to zero.
+ */
+ 
+ 
+extern void SIDINIT(); 
+extern void SIDPLAY();
+extern void STOPSIDP();
+ 
+extern char maxmem [4];
+extern char byterate[4]; 
+extern char subchsz[4];
+extern char sidDigimax;
+
+extern char strStatus[]; 
+
+
+extern char strStatus[]; 
+
+typedef struct ScreenMenuEntry_s
+{
+    const char* pStrLabel;
+    void (*pFunction)(void);
+    uint8_t (*pCheckFunction)(void);
+}
+ScreenMenuEntry;
+extern uint8_t __fastcall__ detectSID (void);
+extern void checkSize (void);
+extern void saveSize (void);
+extern void load8bit (void);
+static void digiOutput(void);
+extern void __fastcall__ playData (void);
+extern char __fastcall__ utilGeoram(void);
+extern void __fastcall__ showKoala(void);
+extern void __fastcall__ downloadKoala (void);
+extern void __fastcall__ copyDataColor(void);
+void showAbout(void);
+uint8_t returnTrue(void);
+static void checkGeoram(void);
+static void uploadWave (void);
+static void loadSID(void);
+static void loadKoala(void);
+static void playWave (void);
+static void playSID (void);
+static void stopSID (void);
+static void slideShow (void);
+static void showKoalaImage (void);
+static void uploadPRG(void);
+static void uploadImage(void);
+void refreshMainScreen(void);
+void screenPrintTopLine(uint8_t xStart, uint8_t xEnd, uint8_t y);
+void screenPrintSepLine(uint8_t xStart, uint8_t xEnd, uint8_t y);
+void screenPrintBottomLine(uint8_t xStart, uint8_t xEnd, uint8_t y);
+void screenPrintFreeLine(uint8_t xStart, uint8_t xEnd, uint8_t y);
+void screenPrintButton(uint8_t x, uint8_t y, const char* pStrLabel);
+void __fastcall__ setStatus(const char* pStrStatus);
+void refreshStatusLine(void);
+void screenInit(void);
+void screenBing(void);
+void __fastcall__ screenPrintHex2(uint8_t n);
+void __fastcall__ screenPrintHex4(uint16_t n);
+void __fastcall__ screenPrintAddr(uint8_t nBank, uint8_t nChip, uint16_t nOffset);
+void screenPrintFrame(void);
+void screenPrintBox(uint8_t x, uint8_t y, uint8_t w, uint8_t h);
+void screenPrintSepLine(uint8_t xStart, uint8_t xEnd, uint8_t y);
+uint8_t __fastcall__ screenPrintDialog(const char* apStrLines[], uint8_t flags);
+void __fastcall__ screenPrintSimpleDialog(const char* apStrLines[]);
+void __fastcall__ screenPrintDialog2(const char* apStrLines[]);
+uint8_t __fastcall__ screenPrintTwoLinesDialog(const char* p1, const char* p2);
+uint8_t __fastcall__ screenAskEraseDialog(void);
+void __fastcall__ screenPrintVerifyError(uint8_t nBank, uint8_t nChip,
+                                         uint16_t nOffset,
+                                         uint8_t nData,
+                                         uint8_t nFlashVal);
+uint8_t __fastcall__ screenWaitKey(uint8_t flags);
+uint8_t __fastcall__ screenGetKey(void);
+const char* __fastcall__ screenReadInput(const char* pStrTitle, const char* pStrPrompt);
+
+void __fastcall__ screenPrintMenu(uint8_t x, uint8_t y,
+                                  const ScreenMenuEntry* pMenuEntries,
+                                  uint8_t nSelected, uint8_t bPrintFrame);
+
+void __fastcall__ screenDoMenu(uint8_t x, uint8_t y,
+                               const ScreenMenuEntry* pMenuEntries);
+void screenShowSprites(void);
+void utilReset(void);
+uint8_t __fastcall__ fileDlg(char* pStrName, const char* pStrType);
+uint8_t fileDlgGetDriveNumber(void);
+void fileDlgReadDir(void);
+void fileDlgSetDriveNumber(uint8_t n);
+
+#endif /* PROVA_H_ */

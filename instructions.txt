@@ -1,4 +1,4 @@
-        geoplayer V1.2
+        geoplayer V1.2 (AI fixed)
          (C)m.aNGELINI
 
 tHE BEST WAY TO USE THIS TOOL

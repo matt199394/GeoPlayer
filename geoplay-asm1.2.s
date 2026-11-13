@@ -34,6 +34,14 @@
 .segment "LOADADDR"
         .byte 01,08
 
+; BASIC stub: 10 SYS 16384 -> RUN starts the player at $4000
+.segment "BASICSTUB"
+        .word   * + 12          ; link -> end-of-program marker
+        .word   10              ; line number
+        .byte   $9e, " 16384"   ; SYS 16384
+        .byte   0               ; end of line
+        .word   0               ; end of program
+
 .segment "MUSIC"
         .incbin "ILoveDMC.sid",$7e
 

@@ -3,6 +3,9 @@
 *.obj
 *.a
 
+# Output di build del player
+GeoPlayer1.2.prg
+
 # Output di build generati (listing, mappe, etichette)
 *.map
 *.lbl

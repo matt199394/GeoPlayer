@@ -1649,7 +1649,7 @@ loadimage:
         jmp copyN
 
 
-; Slide show: SPACE = next image
+; Slide show: SPACE = next image, q = exit early
 ; Exits after the last image; with 0 or 1 images SPACE returns immediately.
 
 .export _koalaCount
@@ -1674,8 +1674,12 @@ _downloadKoala:
         beq @check
 
         cmp #$20               ; SPACE
+        beq @next
+        cmp #$51               ; q
+        beq @quit
         bne @check
 
+@next:
         lda _koalaCount
         cmp #2
         bcc @quit              ; 0 or 1 image: return

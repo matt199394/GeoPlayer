@@ -761,6 +761,7 @@ static void slideShow (void)
 {
 	koalaCount = koalaCounter;
     downloadKoala();
+    screenInit();
 }
 
 static uint8_t openKoala(void)         // file dialog + header check

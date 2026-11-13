@@ -219,7 +219,7 @@ void fileDlgReadDir(void)
             ++nDirEntries;
         }
 
-        c = (c == '+') ? c = '*' : c = '+';
+        c = (c == '+') ? '*' : '+';
         cputcxy(FILEDLG_X + FILEDLG_W - 2, FILEDLG_Y + 1, c);
     }
     cputcxy(FILEDLG_X + FILEDLG_W - 2, FILEDLG_Y + 1, ' ');
@@ -320,7 +320,7 @@ static void __fastcall__ fileDlgPrintEntry(uint8_t nLine, uint8_t nEntry)
  */
 void __fastcall__ fileDlgChangeDir(const char* pStrDir)
 {
-    char strCmd[3 + FILENAME_MAX];
+    static char strCmd[3 + FILENAME_MAX];
 
     strcpy(strCmd, "cd:");
     strcpy(strCmd + 3, pStrDir);

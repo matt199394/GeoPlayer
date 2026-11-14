@@ -224,7 +224,7 @@ ScreenMenuEntry aHelpMenuEntries[] =
 ScreenMenuEntry aMainMenuEntries[] =
 {       
         { "PRG Uploader", uploadPRG, returnTrue },
-		{ "Image Uploader", uploadImage, returnTrue },
+		{ "Bin uploader", uploadImage, returnTrue },
 		{ "SuperMon+", doSupermon, returnTrue },
         { "Reset", utilReset, returnTrue },
         { NULL, NULL, 0 }
@@ -761,6 +761,7 @@ static void slideShow (void)
 {
 	koalaCount = koalaCounter;
     downloadKoala();
+    screenInit();
 }
 
 static uint8_t openKoala(void)         // file dialog + header check
@@ -880,7 +881,7 @@ static void showWelcome(void)
 
     y = 3;
     textcolor(COLOR_EXTRA);
-    cputsxy(1, y, "GeoPlayer 1.1");
+    cputsxy(1, y, "GeoPlayer 1.2");
     textcolor(COLOR_FOREGROUND);
     cputs(" - GeoRAM audio player");
     y += 2;

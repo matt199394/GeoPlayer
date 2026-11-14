@@ -34,6 +34,14 @@
 .segment "LOADADDR"
         .byte 01,08
 
+; BASIC stub: 10 SYS 16384 -> RUN starts the player at $4000
+.segment "BASICSTUB"
+        .word   * + 12          ; link -> end-of-program marker
+        .word   10              ; line number
+        .byte   $9e, " 16384"   ; SYS 16384
+        .byte   0               ; end of line
+        .word   0               ; end of program
+
 .segment "MUSIC"
         .incbin "ILoveDMC.sid",$7e
 
@@ -1649,8 +1657,8 @@ loadimage:
         jmp copyN
 
 
-; Slide show: SPACE = next image
-; If only one image is loaded, SPACE returns to main screen.
+; Slide show: SPACE = next image, q = exit early
+; Exits after the last image; with 0 or 1 images SPACE returns immediately.
 
 .export _koalaCount
 _koalaCount: .byte 0
@@ -1674,21 +1682,23 @@ _downloadKoala:
         beq @check
 
         cmp #$20               ; SPACE
+        beq @next
+        cmp #$51               ; q
+        beq @quit
         bne @check
 
+@next:
         lda _koalaCount
-        cmp #1
-        beq @quit              ; only one image: return
+        cmp #2
+        bcc @quit              ; 0 or 1 image: return
 
         inc $dfff              ; next GeoRAM block
 
         lda $dfff
         cmp _koalaCount
-        bcc @start
+        bcc @start             ; more images to show
 
-        lda #0                 ; restart from first image
-        sta $dfff
-        jmp @start
+                               ; all images shown: fall through to exit
 
 @quit:
         jmp settext

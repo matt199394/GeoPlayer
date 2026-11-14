@@ -12,7 +12,7 @@ char strStatus[41];
 
 const char* apStrAbout[] =
 {
-        "Version 1.1", 
+        "Version 1.2", 
         "",
         "(Compiled: " __DATE__ " " __TIME__ ")",
         "GeoPlayer(C) 2021 Matteo Angelini",

@@ -1659,7 +1659,7 @@ loadimage:
 
 ; Slide show: SPACE = next image, q = exit early
 ; Exits after the last image; with 0 or 1 images SPACE returns immediately.
-
+kidx:       .byte 0
 .export _koalaCount
 _koalaCount: .byte 0
 
@@ -1671,9 +1671,11 @@ _downloadKoala:
         jsr setbitmap
 
         lda #0
-        sta $dfff              ; first image: block 0
+        sta kidx               ; first image: block 0
 
 @start:
+        lda kidx
+        sta $dfff              ; select the GeoRAM block (write only!)
         jsr loadimage
         jsr copyColor
 
@@ -1688,19 +1690,13 @@ _downloadKoala:
         bne @check
 
 @next:
-        lda _koalaCount
-        cmp #2
-        bcc @quit              ; 0 or 1 image: return
-
-        inc $dfff              ; next GeoRAM block
-
-        lda $dfff
+        inc kidx               ; counter in RAM, not in $dfff
+        lda kidx
         cmp _koalaCount
         bcc @start             ; more images to show
 
-                               ; all images shown: fall through to exit
-
 @quit:
+        jsr homepage           ; GeoRAM window back to page 0 / block 0
         jmp settext
 
 ; =============================================================================

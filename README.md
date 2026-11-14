@@ -6,6 +6,8 @@ GeoPlayer turns a GeoRAM unit into a playback medium: wave files, SID tunes,
 Koala graphics, PRG programs and generic binary files can be uploaded from disk
 into the GeoRAM and then used directly from there.
 
+![GeoPlayer main screen](docs/screenshots/geoplayer-main.png)
+
 ## Features
 
 - **Wave player** — uploads and plays PCM wave files stored in GeoRAM

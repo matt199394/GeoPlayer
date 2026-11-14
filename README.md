@@ -12,6 +12,7 @@ into the GeoRAM and then used directly from there.
   - 8 or 16 bit, mono
   - sample rates: 8, 11, 16 or 22 kHz
   - output through the **SID** (with 4-bit dithering) or a userport **DigiMax**
+  (based on the TLC7226, four 8-bit D/A converters)
   - playback controls: pause/resume, seek, rewind, stop, screen on/off, repeat
 - **SID player** — loads SID files at address `$1000`, showing title and author
 - **Koala menu**
@@ -32,7 +33,8 @@ into the GeoRAM and then used directly from there.
 - A Commodore 64 (real hardware or emulator such as VICE)
 - A **GeoRAM** expansion (1–4 MB)
 - A disk device — **SD2IEC** recommended
-- Optional: a userport **DigiMax** adapter for the best sound quality
+- Optional: a userport **DigiMax** adapter (based on the TLC7226, four 8-bit
+  D/A converters) for the best sound quality
 
 ## Koala images note
 
